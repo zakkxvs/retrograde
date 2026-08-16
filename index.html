@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro — After Effects Project & Preset Converter</title>
+    <title>Retro — The All-In-One After Effects Toolkit</title>
     <style>
         * {margin:0; padding:0; box-sizing:border-box; font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;}
         :root {
@@ -17,7 +17,7 @@
         header {text-align: center; padding: 60px 0 48px; border-bottom: 1px solid var(--border);}
         .logo {font-size: 64px; margin-bottom: 16px;}
         h1 {font-size: 48px; color: var(--accent); margin-bottom: 12px; letter-spacing:-0.5px;}
-        .subtitle {font-size: 20px; color: var(--muted); max-width: 600px; margin: 0 auto;}
+        .subtitle {font-size: 20px; color: var(--muted); max-width: 650px; margin: 0 auto;}
         section {padding: 48px 0; border-bottom: 1px solid var(--border);}
         section:last-of-type {border-bottom: none;}
         h2 {font-size: 26px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;}
@@ -35,6 +35,9 @@
         .feature-card:hover {border-color: var(--accent); transform: translateY(-3px);}
         .feature-card h3 {margin-top:0; margin-bottom:8px;}
         .feature-card p {margin-bottom:0; font-size:14px;}
+        .tag {display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:10px; margin-left:8px; text-transform:uppercase; letter-spacing:0.5px;}
+        .tag-live {background:rgba(76,217,100,.15); color:var(--success);}
+        .tag-soon {background:rgba(255,149,0,.15); color:var(--warning);}
         ul.feature-list {list-style:none;}
         ul.feature-list li {padding:10px 0; border-bottom:1px solid var(--border); font-size:15px;}
         ul.feature-list li::before {content:"✅"; margin-right:10px;}
@@ -42,26 +45,24 @@
         ol.steps li {padding:8px 0; color:var(--muted);}
         .note-box {background: rgba(255,193,7,.08); border:1px solid rgba(255,193,7,.2); border-radius:10px; padding:20px; margin-top:24px;}
         .note-box strong {color:#e0c060;}
+        .note-box.info {background: rgba(74,144,226,.08); border-color:rgba(74,144,226,.2);}
+        .note-box.info strong {color:#7ab8ff;}
         .changelog-item {background:var(--card); border-radius:10px; padding:20px; margin-bottom:12px; border-left:4px solid var(--success);}
         .changelog-item h3 {margin-top:0; color:var(--success);}
         .version-table {width:100%; border-collapse:collapse; margin-top:12px;}
         .version-table th, .version-table td {padding:10px 14px; text-align:left; border-bottom:1px solid var(--border);}
         .version-table th {color:var(--accent); font-weight:600;}
         .faq-item {background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px; margin-bottom:12px;}
-        .faq-item h3 {margin-top:0;}
-        footer {text-align:center; padding:40px 0; color:var(--muted); font-size:14px;}
-        footer a {color:var(--accent); text-decoration:none;}
-        .badge {display:inline-block; padding:3px 10px; border-radius:12px; font-size:12px; font-weight:600; margin-left:8px;}
-        .badge-new {background:rgba(76,217,100,.15); color:var(--success);}
-        .badge-fix {background:rgba(255,149,0,.15); color:var(--warning);}
-        .badge-improve {background:rgba(74,144,226,.15); color:var(--accent);}
+        .faq-item h3 {margin-top:0; font-size:16px;}
         code {background:var(--bg-alt); padding:2px 8px; border-radius:4px; font-family:Consolas,monospace; font-size:14px;}
         .stat-box {display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; text-align:center;}
         .stat-card {background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px;}
         .stat-number {font-size:32px; font-weight:700; color:var(--accent);}
         .stat-label {font-size:14px; color:var(--muted); margin-top:4px;}
+        footer {text-align:center; padding:40px 0; color:var(--muted); font-size:14px; border-top:1px solid var(--border); margin-top:24px;}
+        footer a {color:var(--accent); text-decoration:none;}
         @media (max-width:768px) {.stat-box {grid-template-columns:repeat(2,1fr);}}
-        @media (max-width:600px) {h1 {font-size:36px;} .download-box {padding:24px;} .btn {display:block; margin:8px 0;} .stat-box {grid-template-columns:1fr;}}
+        @media (max-width:600px) {h1 {font-size:32px;} .download-box {padding:24px;} .btn {display:block; margin:8px 0;} .stat-box {grid-template-columns:1fr;}}
     </style>
 </head>
 <body>
@@ -71,7 +72,7 @@
         <header>
             <div class="logo">⚡</div>
             <h1>Retro</h1>
-            <p class="subtitle">The Ultimate After Effects Project & Preset Converter — Save in any version. Open in any version. Forward & Backward.</p>
+            <p class="subtitle">The All-In-One After Effects Toolkit — Convert Projects, Relink Footage, Cleanup, Rename, Report & More. Free & Open Source.</p>
         </header>
 
         <!-- DOWNLOAD SECTION -->
@@ -79,289 +80,161 @@
             <div class="download-box">
                 <span class="version-tag">✨ Version 1.1.1 — Latest Release • Recommended</span>
                 <h2 style="justify-content:center; border:none;">Download Retro</h2>
-                <p style="font-size:16px;">Windows 10 / 11 • After Effects CS6 — 2026 • No subscription required</p>
+                <p style="font-size:16px;">Windows 10 / 11 • Works with AE CS6 → 2026 • Free Forever</p>
                 <a href="https://github.com/zakkxvs/retrograde/releases/download/v1.1.1/Setup-Retro-v1.1.1.exe" class="btn">⬇️ Download Installer</a>
-                <a href="https://github.com/zakkxvs/retrograde/releases/tag/v1.1.1" class="btn btn-secondary">📋 View Release Notes</a>
-                <p style="font-size:13px; color:var(--muted); margin-top:12px;">File size: ~4MB • Right-click installer → Run as administrator</p>
+                <a href="https://github.com/zakkxvs/retrograde/releases/tag/v1.1.1" class="btn btn-secondary">📋 Release Notes</a>
+                <p style="font-size:13px; color:var(--muted); margin-top:12px;">File size: ~4MB • Right-click → Run as Administrator</p>
             </div>
         </section>
 
-        <!-- STATS SECTION -->
+        <!-- STATS -->
         <section>
             <h2>At a Glance</h2>
             <div class="stat-box">
-                <div class="stat-card">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">AE Versions Supported</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">2</div>
-                    <div class="stat-label">File Types (.aep + .ffx)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Batch Convert</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Free & Open Source</div>
-                </div>
+                <div class="stat-card"><div class="stat-number">8+</div><div class="stat-label">Tools Included</div></div>
+                <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">AE Versions Supported</div></div>
+                <div class="stat-card"><div class="stat-number">2</div><div class="stat-label">File Types (.aep + .ffx)</div></div>
+                <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">Batch Processing</div></div>
             </div>
         </section>
 
-        <!-- FEATURES SECTION -->
+        <!-- ALL TOOLS -->
         <section>
-            <h2>All Features</h2>
+            <h2>All Tools</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h3>🔄 Convert Projects</h3>
-                    <p>Convert .aep project files between ANY After Effects versions — forward or backward.</p>
+                    <h3>🔄 Project Converter <span class="tag tag-live">Live</span></h3>
+                    <p>Convert .aep projects & .ffx presets between ANY After Effects versions — forward or backward.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🎨 Convert Presets</h3>
-                    <p>Fixed in v1.1.1 — .ffx presets preserve ALL effect data, settings, and animations perfectly.</p>
+                    <h3>🔗 Batch Relink <span class="tag tag-soon">Coming Soon</span></h3>
+                    <p>Fix ALL missing footage links at once. Point to a new folder — relinks everything automatically.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>📦 Batch Convert</h3>
-                    <p>Select dozens of files — convert them all at once. Perfect for preset packs and templates.</p>
+                    <h3>🧹 Project Cleanup <span class="tag tag-soon">Coming Soon</span></h3>
+                    <p>Remove unused files, organize folders, delete empty layers, shrink project size instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📋 Batch Rename <span class="tag tag-soon">Coming Soon</span></h3>
+                    <p>Rename 100+ layers, comps, or footage files in one click. Find & Replace, Add Prefix, Numbering.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 Project Report <span class="tag tag-soon">Coming Soon</span></h3>
+                    <p>List used effects, plugins, AE version, dimensions, framerate. Share with collaborators easily.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Expression Tools <span class="tag tag-soon">Coming Soon</span></h3>
+                    <p>Find, export, and batch-replace expressions across your entire project.</p>
                 </div>
                 <div class="feature-card">
                     <h3>💾 Auto Backup</h3>
-                    <p>Original files are automatically duplicated and timestamped BEFORE conversion — zero risk.</p>
+                    <p>Original files are automatically backed up BEFORE conversion. Zero risk, always safe.</p>
                 </div>
                 <div class="feature-card">
                     <h3>⚙️ One-Click Install</h3>
-                    <p>Professional Windows installer. Installs in seconds. Add/Remove Programs entry included.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🌙 Clean Interface</h3>
-                    <p>Modern dark theme — matches After Effects UI. Easy to use, easy on eyes.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔍 Smart Detection</h3>
-                    <p>Automatically detects source version — no need to look it up manually.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🛡️ Safe & Secure</h3>
-                    <p>Reads files safely — never modifies your originals without backup. Open source code.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>⚡ Super Fast</h3>
-                    <p>Conversion takes milliseconds. No waiting, no uploading to cloud — works offline.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🎯 Custom Output</h3>
-                    <p>Save converted files to any folder — keep originals separate or replace.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔄 Both Directions</h3>
-                    <p>New → Old (downconvert) AND Old → New (upconvert) — works both ways!</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔌 Works Inside AE</h3>
-                    <p>Installs as native extension. No external apps — use it right inside After Effects.</p>
+                    <p>Installs as a native AE extension. Works inside After Effects — no external apps needed.</p>
                 </div>
             </div>
         </section>
 
-        <!-- HOW IT WORKS -->
+        <!-- COMPATIBILITY -->
         <section>
-            <h2>How It Works</h2>
-            <ol class="steps">
-                <li><strong>Read File</strong> — Drag & drop your .aep or .ffx file into Retro</li>
-                <li><strong>Detect Version</strong> — Retro automatically reads and shows the file's current AE version</li>
-                <li><strong>Select Target</strong> — Choose which After Effects version you want to convert to</li>
-                <li><strong>Auto-Backup</strong> — Retro creates a safety copy of your original file automatically</li>
-                <li><strong>Convert</strong> — Click Convert — version data updates instantly</li>
-                <li><strong>Done!</strong> — New file saved. Open it in your target version immediately!</li>
-            </ol>
-        </section>
-
-        <!-- COMPATIBILITY TABLE -->
-        <section>
-            <h2>Full Compatibility List</h2>
+            <h2>Full Compatibility</h2>
             <table class="version-table">
-                <tr>
-                    <th>After Effects Version</th>
-                    <th>Release Year</th>
-                    <th>Supported</th>
-                </tr>
-                <tr><td>CS6 (v11)</td><td>2012</td><td>✅ Full</td></tr>
-                <tr><td>CC (v12)</td><td>2013</td><td>✅ Full</td></tr>
-                <tr><td>CC 2014 (v13)</td><td>2014</td><td>✅ Full</td></tr>
-                <tr><td>CC 2015 (v13.5)</td><td>2015</td><td>✅ Full</td></tr>
-                <tr><td>CC 2017 (v14)</td><td>2017</td><td>✅ Full</td></tr>
-                <tr><td>CC 2018 (v15)</td><td>2018</td><td>✅ Full</td></tr>
-                <tr><td>CC 2019 (v16)</td><td>2019</td><td>✅ Full</td></tr>
-                <tr><td>2020 (v17)</td><td>2020</td><td>✅ Full</td></tr>
-                <tr><td>2021 (v18)</td><td>2021</td><td>✅ Full</td></tr>
-                <tr><td>2022 (v19/v20)</td><td>2022</td><td>✅ Full</td></tr>
-                <tr><td>2023 (v23)</td><td>2023</td><td>✅ Full</td></tr>
-                <tr><td>2024 (v24)</td><td>2024</td><td>✅ Full</td></tr>
-                <tr><td>2025 (v25)</td><td>2025</td><td>✅ Full</td></tr>
-                <tr><td>2026 (v26)</td><td>2026</td><td>✅ Full</td></tr>
+                <tr><th>After Effects Version</th><th>Release Year</th><th>Status</th></tr>
+                <tr><td>CS6 → CC 2019</td><td>2012–2019</td><td>✅ Full Support</td></tr>
+                <tr><td>2020 → 2026</td><td>2020–2026</td><td>✅ Full Support</td></tr>
+                <tr><td colspan="2">File Types</td><td>.aep Project • .ffx Preset</td></tr>
+                <tr><td colspan="2">Operating System</td><td>Windows 10 / 11</td></tr>
             </table>
-            <p style="margin-top:16px;"><strong>Supported File Types:</strong> .aep Project Files • .ffx Animation Presets<br><strong>Supported OS:</strong> Windows 10 / 11 • Mac: use raw extension files directly</p>
         </section>
 
-        <!-- INSTALLATION GUIDE -->
+        <!-- INSTALLATION -->
         <section>
             <h2>Installation Guide</h2>
             <ol class="steps">
-                <li>Download the installer button at the top of this page</li>
-                <li>Locate <code>Setup-Retro-v1.1.1.exe</code> in your Downloads folder</li>
-                <li><strong>Right-click</strong> the file → Select <strong>Run as administrator</strong> ⚠️ <em>(Required for extension folder access)</em></li>
-                <li>Click <strong>Next</strong> → Agree → <strong>Install</strong> → <strong>Finish</strong></li>
-                <li>Open After Effects → Go to menu: <code>Window → Extensions → Retro</code></li>
-                <li>Drag the panel to your workspace → Pin it → You're ready to go! ✅</li>
+                <li>Download the installer button above</li>
+                <li>Right-click <code>Setup-Retro-v1.1.1.exe</code> → <strong>Run as Administrator</strong></li>
+                <li>Click Next → Install → Finish</li>
+                <li>Open After Effects → <code>Window → Extensions → Retro</code></li>
+                <li>Pin the panel → Start converting! ✅</li>
             </ol>
-            <div class="note-box">
-                <strong>💡 Tip:</strong> If Retro doesn't appear in the Extensions menu, restart After Effects. If still missing, run the installer again as Administrator.
+            <div class="note-box info">
+                <strong>💡 Tip:</strong> If Retro doesn't appear, restart After Effects. Admin rights are required because Adobe installs extensions to a protected system folder.
             </div>
         </section>
 
-        <!-- SCREENSHOTS / PREVIEWS -->
-        <section>
-            <h2>Inside After Effects</h2>
-            <p>Retro appears as a native extension panel — clean, dark, and intuitive.</p>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>📄 Convert Tab</h3>
-                    <p>Drag & drop your file → Auto-detects version → pick target → click Convert.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>📂 Batch Mode</h3>
-                    <p>Drop multiple files at once. Convert all to same version in one click.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>⚙️ Settings</h3>
-                    <p>Toggle auto-backup, change output folder, check for updates.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>ℹ️ About Panel</h3>
-                    <p>Version info, compatibility matrix, quick links to Releases & GitHub.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ SECTION -->
+        <!-- FAQ -->
         <section>
             <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>💻 Does it work on Mac?</h3>
-                <p>The installer is Windows-only. Mac support coming in a future update! Meanwhile, you can use the raw extension files directly inside After Effects on Mac.</p>
-            </div>
             <div class="faq-item">
                 <h3>🔄 Can I convert in both directions?</h3>
                 <p><strong>YES!</strong> Convert New → Old (downconvert) AND Old → New (upconvert). Any version to any version!</p>
             </div>
             <div class="faq-item">
-                <h3>🛡️ Will my original files get damaged?</h3>
-                <p><strong>NEVER!</strong> Retro automatically creates a backup copy named like <code>filename.aep.bak</code> or with a timestamp before touching anything. Your originals are 100% safe.</p>
+                <h3>🛡️ Will my original files get overwritten?</h3>
+                <p><strong>NEVER!</strong> Retro automatically creates a backup copy before conversion. Your originals are 100% safe.</p>
             </div>
             <div class="faq-item">
-                <h3>🔑 Why Run as Administrator?</h3>
-                <p>Adobe installs extensions to a protected system folder. Admin rights are required to write files there. This is standard AE behavior.</p>
+                <h3>💻 Is there a Mac version?</h3>
+                <p>The installer is Windows-only. Mac users can use the raw extension files directly from GitHub.</p>
             </div>
             <div class="faq-item">
-                <h3>🎯 Why do I need to relink footage?</h3>
-                <p>This is <strong>NOT a bug</strong> — it's normal After Effects behavior when opening projects saved in newer versions. Simply relink ONE file → AE automatically finds ALL others automatically.</p>
+                <h3>🎯 Why do I see "Missing Footage" after converting?</h3>
+                <p>This is normal After Effects behavior — NOT a bug. Relink ONE file → AE finds ALL others automatically.</p>
             </div>
             <div class="faq-item">
-                <h3>📁 What about .aepx or .aep project files?</h3>
-                <p>Retro works with standard binary <code>.aep</code> project files and <code>.ffx</code> presets. XML-based project formats (.aepx) are not needed or supported.</p>
-            </div>
-            <div class="faq-item">
-                <h3>🆘 Can I uninstall it?</h3>
-                <p>Yes! Go to Windows Settings → Apps → Installed Apps → Find "Retro" → Uninstall. Or use the uninstaller from the Start Menu. Everything cleans up completely.</p>
-            </div>
-            <div class="faq-item">
-                <h3>🔒 Is it free forever?</h3>
-                <p><strong>Yes!</strong> Retro is free, open source, and will always remain free. No subscriptions, no locked features, no paywalls.</p>
+                <h3>🆘 Is it really free forever?</h3>
+                <p><strong>YES!</strong> Free, open source, no subscriptions, no locked features, no paywalls.</p>
             </div>
         </section>
 
-        <!-- CHANGELOG SECTION -->
-        <section>
-            <h2>What's New — v1.1.1</h2>
-            <div class="changelog-item">
-                <h3>✨ Improvements <span class="badge badge-improve">NEW</span></h3>
-                <ul class="feature-list" style="border:none; margin:0;">
-                    <li>Renamed from Retrograde → Retro — shorter, cleaner, more memorable</li>
-                    <li>Brand new professional Windows installer with uninstall support</li>
-                    <li>Updated version numbering throughout entire application</li>
-                    <li>Refreshed UI — smoother, faster, more consistent</li>
-                </ul>
-            </div>
-            <div class="changelog-item">
-                <h3>🐛 Bug Fixes <span class="badge badge-fix">FIXED</span></h3>
-                <ul class="feature-list" style="border:none; margin:0;">
-                    <li>CRITICAL — Fixed .ffx preset conversion: all effect data now preserved</li>
-                    <li>Improved binary parsing — reads full file structure for maximum compatibility</li>
-                    <li>Version detection more accurate across all AE releases</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- VERSION HISTORY -->
+        <!-- CHANGELOG -->
         <section>
             <h2>Version History</h2>
-            <table class="version-table">
-                <tr>
-                    <th>Version</th>
-                    <th>Date</th>
-                    <th>Highlights</th>
-                </tr>
-                <tr>
-                    <td><strong>v1.1.1</strong></td>
-                    <td>Aug 2026</td>
-                    <td>Preset data fixed • Renamed • New installer • UI polished</td>
-                </tr>
-                <tr>
-                    <td>v1.1.0</td>
-                    <td>Aug 2026</td>
-                    <td>Batch convert • Custom output • Auto-updater • Backup system</td>
-                </tr>
-                <tr>
-                    <td>v1.0.0</td>
-                    <td>Aug 2026</td>
-                    <td>Initial Release • .aep conversion • Basic UI • Version detection</td>
-                </tr>
-            </table>
-        </section>
-
-        <!-- FEEDBACK & LINKS -->
-        <section>
-            <h2>Feedback & Support</h2>
-            <p>Retro is open source and community-driven. Your feedback, bug reports, and ideas make it better!</p>
-            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
-                <a href="https://github.com/zakkxvs/retrograde/issues" class="btn" style="padding:12px 24px; font-size:15px;">🐛 Report a Bug</a>
-                <a href="https://github.com/zakkxvs/retrograde/releases" class="btn btn-secondary" style="padding:12px 24px; font-size:15px;">📋 All Releases</a>
-                <a href="https://github.com/zakkxvs/retrograde" class="btn btn-secondary" style="padding:12px 24px; font-size:15px;">⭐ Star on GitHub</a>
-                <a href="https://github.com/zakkxvs/retrograde/discussions" class="btn btn-secondary" style="padding:12px 24px; font-size:15px;">💬 Discussions</a>
+            <div class="changelog-item">
+                <h3>v1.1.1 — Latest Release</h3>
+                <ul class="feature-list">
+                    <li>Renamed from Retrograde → Retro</li>
+                    <li>FIXED: .ffx preset conversion preserves ALL effect data</li>
+                    <li>New professional installer with uninstall support</li>
+                    <li>Improved version detection & file parsing</li>
+                </ul>
+            </div>
+            <div class="changelog-item" style="border-left-color:var(--accent);">
+                <h3 style="color:var(--accent);">v1.1.0</h3>
+                <ul class="feature-list">
+                    <li>Batch convert multiple files at once</li>
+                    <li>Auto-backup system</li>
+                    <li>Custom output folder support</li>
+                </ul>
+            </div>
+            <div class="changelog-item" style="border-left-color:var(--muted);">
+                <h3 style="color:var(--muted);">v1.0.0</h3>
+                <ul class="feature-list">
+                    <li>Initial Release</li>
+                    <li>Convert .aep projects between versions</li>
+                    <li>Convert .ffx animation presets</li>
+                </ul>
             </div>
         </section>
 
-        <!-- IMPORTANT NOTES -->
+        <!-- LINKS -->
         <section>
-            <h2>Important Notes</h2>
-            <div class="note-box">
-                <strong>⚠️ About Footage Relinking:</strong> When opening a converted project in an older version of After Effects, you may see "Missing Footage" warnings. This is normal After Effects behavior — NOT a bug in Retro! Simply relink ONE footage file → AE finds ALL others automatically.
-            </div>
-            <div class="note-box" style="margin-top:16px; border-color:rgba(74,144,226,.3); background:var(--accent-soft);">
-                <strong>💡 Best Practice:</strong> Always keep your original project files backed up separately. Retro creates automatic backups, but it's good practice to keep archives!
-            </div>
-            <div class="note-box" style="margin-top:16px; border-color:rgba(76,217,100,.2); background:rgba(76,217,100,.05);">
-                <strong>✅ Recommended Workflow:</strong> Convert → Test open in target version → Save → Relink footage → Share or archive safely!
+            <h2>Links & Support</h2>
+            <p>Found a bug or have an idea? Open an Issue on GitHub — feedback builds better tools!</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                <a href="https://github.com/zakkxvs/retrograde" class="btn" style="padding:10px 20px; font-size:14px;">⭐ GitHub</a>
+                <a href="https://github.com/zakkxvs/retrograde/issues" class="btn btn-secondary" style="padding:10px 20px; font-size:14px;">🐛 Report Bug</a>
+                <a href="https://github.com/zakkxvs/retrograde/releases" class="btn btn-secondary" style="padding:10px 20px; font-size:14px;">📋 All Releases</a>
             </div>
         </section>
 
         <!-- FOOTER -->
         <footer>
-            <p><strong>Retro v1.1.1</strong> — After Effects Project & Preset Converter</p>
-            <p>Free • Open Source • Forever • Built with ❤️ by <a href="https://github.com/zakkxvs">zakkxvs</a></p>
-            <p>© 2026 • Not affiliated with Adobe Inc. After Effects is a trademark of Adobe.</p>
-            <p><a href="https://github.com/zakkxvs/retrograde">View Source</a> • <a href="https://github.com/zakkxvs/retrograde/releases">Releases</a> • <a href="https://github.com/zakkxvs/retrograde/issues">Report Issues</a></p>
+            <p><strong>Retro v1.1.1</strong> — The All-In-One After Effects Toolkit</p>
+            <p>Free • Open Source • Built with ❤️ by <a href="https://github.com/zakkxvs">zakkxvs</a></p>
+            <p style="margin-top:8px; font-size:12px;">Not affiliated with Adobe Inc. After Effects is a trademark of Adobe Systems Inc.</p>
         </footer>
 
     </div>
