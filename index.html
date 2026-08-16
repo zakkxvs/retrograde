@@ -10,7 +10,7 @@
             --bg: #0f1115; --bg-alt: #171a1f; --card: #1a1d23; --accent: #4a90e2;
             --accent-soft: rgba(74,144,226,.15); --accent-hover: #357abd;
             --text: #e4e4e7; --muted: #9ca3af; --border: #2d3139;
-            --success: #4cd964; --warning: #ff9500; --danger: #ff453a;
+            --success: #4cd964; --warning: #ff9500; --discord: #5865F2;
         }
         body {background: var(--bg); color: var(--text); line-height: 1.7;}
         .container {max-width: 900px; margin: 0 auto; padding: 0 24px;}
@@ -30,6 +30,8 @@
         .btn:hover {background: var(--accent-hover); transform: translateY(-2px); box-shadow:0 8px 20px rgba(74,144,226,.25);}
         .btn-secondary {background: transparent; border:2px solid var(--accent); color: var(--accent);}
         .btn-secondary:hover {background: var(--accent); color: white;}
+        .btn-discord {background: var(--discord); border-color: var(--discord);}
+        .btn-discord:hover {background: #4752C4;}
         .feature-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top:8px;}
         .feature-card {background: var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; transition:all .2s;}
         .feature-card:hover {border-color: var(--accent); transform: translateY(-3px);}
@@ -61,6 +63,7 @@
         .stat-label {font-size:14px; color:var(--muted); margin-top:4px;}
         footer {text-align:center; padding:40px 0; color:var(--muted); font-size:14px; border-top:1px solid var(--border); margin-top:24px;}
         footer a {color:var(--accent); text-decoration:none;}
+        .link-row {display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;}
         @media (max-width:768px) {.stat-box {grid-template-columns:repeat(2,1fr);}}
         @media (max-width:600px) {h1 {font-size:32px;} .download-box {padding:24px;} .btn {display:block; margin:8px 0;} .stat-box {grid-template-columns:1fr;}}
     </style>
@@ -73,6 +76,7 @@
             <div class="logo">⚡</div>
             <h1>Retro</h1>
             <p class="subtitle">The All-In-One After Effects Toolkit — Convert Projects, Relink Footage, Cleanup, Rename, Report & More. Free & Open Source.</p>
+            <a href="https://discord.gg/FfngNepNG" class="btn btn-discord" style="padding:10px 24px; font-size:15px; margin-top:24px;">💬 Join Community Discord</a>
         </header>
 
         <!-- DOWNLOAD SECTION -->
@@ -219,11 +223,12 @@
             </div>
         </section>
 
-        <!-- LINKS -->
+        <!-- LINKS & COMMUNITY -->
         <section>
-            <h2>Links & Support</h2>
-            <p>Found a bug or have an idea? Open an Issue on GitHub — feedback builds better tools!</p>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+            <h2>Links & Community</h2>
+            <p>Found a bug or have an idea? Join our Discord or open an Issue on GitHub — feedback builds better tools!</p>
+            <div class="link-row">
+                <a href="https://discord.gg/FfngNepNG" class="btn btn-discord" style="padding:10px 20px; font-size:14px;">💬 Discord Server</a>
                 <a href="https://github.com/zakkxvs/retrograde" class="btn" style="padding:10px 20px; font-size:14px;">⭐ GitHub</a>
                 <a href="https://github.com/zakkxvs/retrograde/issues" class="btn btn-secondary" style="padding:10px 20px; font-size:14px;">🐛 Report Bug</a>
                 <a href="https://github.com/zakkxvs/retrograde/releases" class="btn btn-secondary" style="padding:10px 20px; font-size:14px;">📋 All Releases</a>
