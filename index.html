@@ -3,64 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro — After Effects Toolkit</title>
+    <title>Retro — The All-In-One After Effects Toolkit</title>
     <style>
         * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif;}
         :root {
             --bg: #09090b;
             --surface: #121214;
+            --surface-2: #1a1a1f;
             --border: #27272a;
             --accent: #6366f1;
             --accent-hover: #4f46e5;
+            --accent-soft: rgba(99,102,241,.12);
             --text: #fafafa;
             --muted: #a1a1aa;
+            --muted-2: #71717a;
             --discord: #5865F2;
             --success: #34d399;
             --warning: #fbbf24;
+            --danger: #f87171;
         }
-        body {background: var(--bg); color: var(--text); line-height: 1.6;}
-        .container {max-width: 720px; margin: 0 auto; padding: 0 24px;}
+        body {background: var(--bg); color: var(--text); line-height: 1.7;}
+        .container {max-width: 900px; margin: 0 auto; padding: 0 24px;}
 
-        header {text-align: center; padding: 80px 0 60px;}
-        h1 {font-size: 56px; font-weight: 800; letter-spacing: -2px; margin-bottom: 12px;}
-        .tagline {font-size: 20px; color: var(--muted); margin-bottom: 32px;}
-        .btn-group {display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;}
-        .btn {padding: 12px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all .2s; border: none; cursor: pointer;}
+        header {text-align: center; padding: 80px 0 60px; border-bottom: 1px solid var(--border);}
+        h1 {font-size: 64px; font-weight: 800; letter-spacing: -3px; margin-bottom: 12px;}
+        .tagline {font-size: 20px; color: var(--muted); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto;}
+        .btn-group {display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;}
+        .btn {padding: 14px 32px; border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all .25s; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;}
         .btn-primary {background: var(--accent); color: white;}
-        .btn-primary:hover {background: var(--accent-hover); transform: translateY(-1px);}
+        .btn-primary:hover {background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(99,102,241,.25);}
         .btn-discord {background: var(--discord); color: white;}
-        .btn-discord:hover {background: #4752c4;}
+        .btn-discord:hover {background: #4752c4; transform: translateY(-2px);}
         .btn-secondary {background: transparent; color: var(--text); border: 1px solid var(--border);}
         .btn-secondary:hover {background: var(--surface); border-color: var(--accent);}
+        .version-badge {display: inline-block; background: rgba(52,211,153,.12); color: var(--success); padding: 6px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-bottom: 24px;}
 
-        section {padding: 48px 0; border-bottom: 1px solid var(--border);}
+        section {padding: 60px 0; border-bottom: 1px solid var(--border);}
         section:last-of-type {border-bottom: none;}
-        h2 {font-size: 22px; margin-bottom: 24px; font-weight: 700;}
+        h2 {font-size: 28px; margin-bottom: 28px; font-weight: 700; display: flex; align-items: center; gap: 10px;}
+        h2 span {color: var(--accent);}
+        h3 {font-size: 18px; margin-bottom: 10px; font-weight: 600;}
+        p {color: var(--muted); font-size: 15px; margin-bottom: 12px;}
 
-        .tools-grid {display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;}
-        .tool-card {background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; transition: all .2s;}
-        .tool-card:hover {border-color: var(--accent);}
-        .tool-card h3 {font-size: 15px; margin-bottom: 4px;}
-        .tool-card p {font-size: 13px; color: var(--muted);}
-        .badge {display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; text-transform: uppercase; letter-spacing: .5px;}
+        .stats-grid {display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;}
+        .stat-card {background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; transition: all .2s;}
+        .stat-card:hover {border-color: var(--accent); transform: translateY(-2px);}
+        .stat-number {font-size: 36px; font-weight: 800; color: var(--accent); margin-bottom: 6px;}
+        .stat-label {font-size: 14px; color: var(--muted);}
+
+        .tools-grid {display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;}
+        .tool-card {background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 22px; transition: all .25s;}
+        .tool-card:hover {border-color: var(--accent); transform: translateY(-2px); background: var(--surface-2);}
+        .tool-card h3 {font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;}
+        .tool-card p {font-size: 14px; color: var(--muted); margin-bottom: 0;}
+        .badge {font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: .5px;}
         .live {background: rgba(52,211,153,.15); color: var(--success);}
         .soon {background: rgba(251,191,36,.15); color: var(--warning);}
 
-        .version-box {background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; text-align: center;}
-        .version-number {font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 8px;}
-        .version-meta {font-size: 14px; color: var(--muted); margin-bottom: 16px;}
+        .features-list {display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;}
+        .feature-item {display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: var(--surface); border-radius: 8px;}
+        .feature-item span {color: var(--success); font-size: 18px;}
 
-        .faq-item {background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 10px;}
-        .faq-item h3 {font-size: 15px; margin-bottom: 6px;}
-        .faq-item p {font-size: 14px; color: var(--muted);}
+        .compatibility-table {width: 100%; border-collapse: collapse;}
+        .compatibility-table th, .compatibility-table td {padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px;}
+        .compatibility-table th {color: var(--accent); font-weight: 600; background: var(--surface);}
+        .compatibility-table tr:hover {background: var(--surface);}
+        .status-yes {color: var(--success); font-weight: 600;}
 
-        footer {text-align: center; padding: 40px 0; color: var(--muted); font-size: 13px;}
+        .version-box {background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 14px; padding: 32px; text-align: center;}
+        .version-number {font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 8px;}
+        .version-meta {font-size: 14px; color: var(--muted); margin-bottom: 20px;}
+
+        .steps {margin-left: 0; list-style: none; counter-reset: step;}
+        .steps li {padding: 14px 0; border-bottom: 1px solid var(--border); display: flex; gap: 14px;}
+        .steps li:last-child {border-bottom: none;}
+        .steps li::before {counter-increment: step; content: counter(step); flex: 0 0 32px; height: 32px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;}
+        .steps li div {padding-top: 4px;}
+        .steps li strong {display: block; color: var(--text); font-size: 15px;}
+        .steps li span {font-size: 14px; color: var(--muted);}
+
+        .faq-item {background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 10px;}
+        .faq-item h3 {font-size: 15px; margin-bottom: 8px;}
+        .faq-item p {font-size: 14px; color: var(--muted); margin-bottom: 0;}
+
+        .changelog-item {background: var(--surface); border-left: 4px solid; border-radius: 8px; padding: 18px; margin-bottom: 12px;}
+        .changelog-item.live {border-color: var(--success);}
+        .changelog-item.accent {border-color: var(--accent);}
+        .changelog-item.muted {border-color: var(--muted-2);}
+        .changelog-item h3 {font-size: 15px; margin-bottom: 10px;}
+        .changelog-item ul {list-style: none;}
+        .changelog-item li {padding: 4px 0; font-size: 14px; color: var(--muted);}
+        .changelog-item li::before {content: "• "; color: var(--accent); font-weight: bold;}
+
+        .note-box {background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.2); border-radius: 10px; padding: 18px; margin-top: 16px;}
+        .note-box strong {color: var(--warning); display: block; margin-bottom: 6px;}
+        .note-box.info {background: rgba(99,102,241,.08); border-color: rgba(99,102,241,.2);}
+        .note-box.info strong {color: var(--accent);}
+
+        .links-grid {display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;}
+        .link-card {background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; text-decoration: none; color: inherit; transition: all .2s;}
+        .link-card:hover {border-color: var(--accent); transform: translateY(-2px);}
+        .link-card .icon {font-size: 24px; margin-bottom: 8px;}
+        .link-card .label {font-size: 14px; font-weight: 600; margin-bottom: 4px;}
+        .link-card .desc {font-size: 12px; color: var(--muted);}
+
+        footer {text-align: center; padding: 48px 0; color: var(--muted); font-size: 13px;}
         footer a {color: var(--accent); text-decoration: none;}
+        footer p {margin-bottom: 6px;}
 
-        @media (max-width: 600px) {
-            h1 {font-size: 40px;}
+        code {background: var(--surface-2); padding: 2px 8px; border-radius: 4px; font-family: Consolas, monospace; font-size: 13px; color: var(--accent);}
+
+        @media (max-width: 768px) {
+            .stats-grid {grid-template-columns: repeat(2, 1fr);}
             .tools-grid {grid-template-columns: 1fr;}
+            .features-list {grid-template-columns: 1fr;}
+            .links-grid {grid-template-columns: repeat(2, 1fr);}
+        }
+        @media (max-width:  600px) {
+            h1 {font-size: 42px;}
             .btn-group {flex-direction: column;}
+            .compatibility-table th, .compatibility-table td {padding: 10px 8px; font-size: 13px;}
         }
     </style>
 </head>
@@ -69,77 +131,142 @@
 
         <!-- HEADER -->
         <header>
-            <h1>Retro</h1>
-            <p class="tagline">The All‑In‑One After Effects Toolkit — Free & Open Source.</p>
+            <h1>⚡ Retro</h1>
+            <p class="tagline">The All‑In‑One After Effects Toolkit. Convert projects, relink footage, clean up, rename, report & more. 100% Free & Open Source.</p>
+            <div class="version-badge">✨ Version 1.1.1 — Latest Release • Recommended</div>
             <div class="btn-group">
-                <a href="https://github.com/zakkxvs/retrograde/releases/download/v1.1.1/Setup-Retro-v1.1.1.exe" class="btn btn-primary">⬇️ Download v1.1.1</a>
-                <a href="https://discord.gg/FfngNepNG" class="btn btn-discord">💬 Discord</a>
-                <a href="https://github.com/zakkxvs/retrograde" class="btn btn-secondary">GitHub</a>
+                <a href="https://github.com/zakkxvs/retrograde/releases/download/v1.1.1/Setup-Retro-v1.1.1.exe" class="btn btn-primary">⬇️ Download Installer</a>
+                <a href="https://discord.gg/FfngNepNG" class="btn btn-discord">💬 Join Discord</a>
+                <a href="https://github.com/zakkxvs/retrograde" class="btn btn-secondary">⭐ GitHub</a>
             </div>
         </header>
 
+        <!-- STATS -->
+        <section>
+            <h2>At a Glance</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-number">8+</div><div class="stat-label">Powerful Tools</div></div>
+                <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">AE Versions Supported</div></div>
+                <div class="stat-card"><div class="stat-number">2</div><div class="stat-label">File Types (.aep + .ffx)</div></div>
+                <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">Batch Processing</div></div>
+            </div>
+        </section>
+
         <!-- WHY RETRO -->
         <section>
-            <h2>Why Retro</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h3>🛠️ Purpose Built</h3>
-                    <p>Tools made exclusively for After Effects editors — no fluff.</p>
-                </div>
-                <div class="tool-card">
-                    <h3>🆓 Free Forever</h3>
-                    <p>No subscriptions, no locked features, no paywalls. Open source.</p>
-                </div>
-                <div class="tool-card">
-                    <h3>⚡ Blazing Fast</h3>
-                    <p>One‑click operations. Batch processing. Works completely offline.</p>
-                </div>
-                <div class="tool-card">
-                    <h3>🔒 Safe & Secure</h3>
-                    <p>Auto‑backup originals. Never modified without safety copies.</p>
-                </div>
+            <h2>Why Choose <span>Retro</span></h2>
+            <div class="features-list">
+                <div class="feature-item"><span>✅</span><div><strong>Free Forever</strong><br>No subscriptions, no locked features, no paywalls.</div></div>
+                <div class="feature-item"><span>✅</span><div><strong>Open Source</strong><br>Full code on GitHub. Transparent & safe.</div></div>
+                <div class="feature-item"><span>✅</span><div><strong>Works Offline</strong><br>No cloud uploads. Everything runs locally.</div></div>
+                <div class="feature-item"><span>✅</span><div><strong>Auto Backup</strong><br>Originals saved automatically. Zero risk.</div></div>
+                <div class="feature-item"><span>✅</span><div><strong>Both Directions</strong><br>Convert new→old AND old→new seamlessly.</div></div>
+                <div class="feature-item"><span>✅</span><div><strong>Native Extension</strong><br>Works inside AE. No external apps needed.</div></div>
+                <div class="feature-item"><span>✅</span><div><strong>One‑Click Install</strong><br>Professional installer. Uninstalls cleanly.</div></div>
+                <div class="feature-item"><span>✅</span><div><strong>Fast & Light</strong><br>~4MB download. Conversion takes milliseconds.</div></div>
             </div>
         </section>
 
         <!-- ALL TOOLS -->
         <section>
-            <h2>Available Tools</h2>
+            <h2>All Available Tools</h2>
             <div class="tools-grid">
                 <div class="tool-card">
                     <h3>🔄 Project Converter <span class="badge live">Live</span></h3>
-                    <p>Convert .aep & .ffx between ANY AE version — forward or backward.</p>
+                    <p>Convert .aep project files & .ffx animation presets between ANY After Effects versions — forward or backward. Preserves ALL data, settings & animations.</p>
                 </div>
                 <div class="tool-card">
                     <h3>🔗 Batch Relink <span class="badge soon">Coming Soon</span></h3>
-                    <p>Reconnect ALL missing footage files in one click.</p>
+                    <p>Reconnect ALL missing footage files in one click. Point to a new folder → Retro relinks everything automatically. Update paths in bulk.</p>
                 </div>
                 <div class="tool-card">
                     <h3>🧹 Project Cleanup <span class="badge soon">Coming Soon</span></h3>
-                    <p>Remove unused files, organize folders, shrink project size.</p>
+                    <p>Remove unused footage, comps, layers & effects. Auto‑organize folders by type. Delete empty layers. Shrink project size by up to 50%.</p>
                 </div>
                 <div class="tool-card">
                     <h3>📋 Batch Rename <span class="badge soon">Coming Soon</span></h3>
-                    <p>Rename layers, comps & footage in bulk — find & replace, prefix, numbering.</p>
+                    <p>Rename 100+ items at once. Find & Replace. Add prefix/suffix. Auto numbering. Clean special characters. Works on layers, comps & footage.</p>
                 </div>
                 <div class="tool-card">
                     <h3>📊 Project Report <span class="badge soon">Coming Soon</span></h3>
-                    <p>List effects, plugins, version & stats — share with collaborators.</p>
+                    <p>List all effects, plugins used, AE version, dimensions, framerate, layer count. Share with collaborators so they know exactly what to install.</p>
                 </div>
                 <div class="tool-card">
                     <h3>⚡ Expression Tools <span class="badge soon">Coming Soon</span></h3>
-                    <p>Find, export & replace expressions across your entire project.</p>
+                    <p>Find all expressions in your project. Export them as text. Batch‑replace across the entire project. Check for errors & convert between versions.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>💾 Auto Backup System</h3>
+                    <p>Every file is duplicated & timestamped BEFORE conversion. Your originals are never touched. Restore instantly if needed.</p>
+                </div>
+                <div class="tool-card">
+                    <h3>⚙️ Smart Detection</h3>
+                    <p>Automatically reads & displays the file's AE version. No need to look it up manually. One‑click conversion workflow.</p>
                 </div>
             </div>
         </section>
 
-        <!-- DOWNLOAD -->
+        <!-- COMPATIBILITY -->
         <section>
-            <h2>Download</h2>
+            <h2>Full Compatibility</h2>
+            <table class="compatibility-table">
+                <tr><th>After Effects Version</th><th>Release Year</th><th>Support</th></tr>
+                <tr><td>CS6 (v11)</td><td>2012</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>CC (v12)</td><td>2013</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>CC 2014 (v13)</td><td>2014</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>CC 2015 (v13.5)</td><td>2015</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>CC 2017 (v14)</td><td>2017</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>CC 2018 (v15)</td><td>2018</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>CC 2019 (v16)</td><td>2019</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>2020 (v17)</td><td>2020</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>2021 (v18)</td><td>2021</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>2022 (v19/v20)</td><td>2022</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>2023 (v23)</td><td>2023</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>2024 (v24)</td><td>2024</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>2025 (v25)</td><td>2025</td><td class="status-yes">✅ Full</td></tr>
+                <tr><td>2026 (v26)</td><td>2026</td><td class="status-yes">✅ Full</td></tr>
+                <tr><th colspan="2">Supported File Types</th><th>.aep Project • .ffx Preset</th></tr>
+                <tr><th colspan="2">Operating System</th><th>Windows 10 / 11</th></tr>
+            </table>
+        </section>
+
+        <!-- DOWNLOAD & INSTALL -->
+        <section>
+            <h2>Download & Installation</h2>
             <div class="version-box">
-                <div class="version-number">Version 1.1.1 — Latest</div>
-                <div class="version-meta">Windows 10 / 11 • After Effects CS6 → 2026 • ~4MB</div>
+                <div class="version-number">Version 1.1.1 — Latest Release</div>
+                <div class="version-meta">Windows 10 / 11 • AE CS6 → 2026 • ~4MB</div>
                 <a href="https://github.com/zakkxvs/retrograde/releases/download/v1.1.1/Setup-Retro-v1.1.1.exe" class="btn btn-primary">⬇️ Download Installer</a>
-                <p style="font-size:13px; color:var(--muted); margin-top:12px;">Run installer as Administrator → Open in AE: Window → Extensions → Retro</p>
+            </div>
+            <br>
+            <h3>Installation Steps</h3>
+            <ul class="steps">
+                <li><div><strong>Download the Installer</strong><span>Click the button above or get it from GitHub Releases</span></div></li>
+                <li><div><strong>Run as Administrator</strong><span>Right‑click <code>Setup‑Retro‑v1.1.1.exe</code> → Run as Administrator</span></div></li>
+                <li><div><strong>Install</strong><span>Click Next → Agree → Install → Finish</span></div></li>
+                <li><div><strong>Open After Effects</strong><span>Go to <code>Window → Extensions → Retro</code></span></div></li>
+                <li><div><strong>Done! ✅</strong><span>Pin the panel → Drag & drop files → Start converting!</span></div></li>
+            </ul>
+            <div class="note-box info">
+                <strong>💡 Troubleshooting</strong>
+                If Retro doesn't appear in the Extensions menu → Restart After Effects. If still missing → Run the installer again as Administrator. Admin rights are required because extensions install to a protected system folder.
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section>
+            <h2>How It Works</h2>
+            <ul class="steps">
+                <li><div><strong>📄 Read File</strong><span>Drag & drop your .aep or .ffx file into Retro</span></div></li>
+                <li><div><strong>🔍 Detect Version</strong><span>Retro automatically reads & displays the file's current AE version</span></div></li>
+                <li><div><strong>🎯 Select Target</strong><span>Choose which AE version you want to convert to</span></div></li>
+                <li><div><strong>💾 Auto Backup</strong><span>Retro creates a safety copy of your original file automatically</span></div></li>
+                <li><div><strong>🔄 Convert</strong><span>Click Convert — version data updates instantly</span></div></li>
+                <li><div><strong>✅ Done!</strong><span>New file saved. Open it in your target version immediately!</span></div></li>
+            </ul>
+            <div class="note-box">
+                <strong>⚠️ About Missing Footage</strong>
+                When opening a converted project in an older version, you may see "Missing Footage" warnings. This is NORMAL After Effects behavior — NOT a bug in Retro! Simply relink ONE file → AE finds ALL others automatically.
             </div>
         </section>
 
@@ -147,39 +274,99 @@
         <section>
             <h2>Frequently Asked Questions</h2>
             <div class="faq-item">
-                <h3>Can I convert both ways?</h3>
-                <p>Yes — downconvert (new → old) and upconvert (old → new). Any version to any version.</p>
+                <h3>🔄 Can I convert in both directions?</h3>
+                <p><strong>YES!</strong> Convert New → Old (downconvert) AND Old → New (upconvert). Any version to any version! No limits.</p>
             </div>
             <div class="faq-item">
-                <h3>Are original files safe?</h3>
-                <p>Absolutely — Retro automatically creates a backup before conversion. Originals are never touched.</p>
+                <h3>🛡️ Will my original files get damaged?</h3>
+                <p><strong>NEVER!</strong> Retro automatically creates a backup copy named like <code>filename.aep.bak</code> or with a timestamp before touching anything. Your originals are 100% safe.</p>
             </div>
             <div class="faq-item">
-                <h3>Mac support?</h3>
-                <p>Installer is Windows‑only. Mac users can use raw extension files directly from GitHub.</p>
+                <h3>💻 Is there a Mac version?</h3>
+                <p>The installer is Windows‑only. Mac support coming in a future update! Meanwhile, you can use the raw extension files directly inside After Effects on Mac.</p>
             </div>
             <div class="faq-item">
-                <h3>Is it really free?</h3>
-                <p>100% free forever. Open source. No locked features, no hidden costs, no subscriptions.</p>
+                <h3>📁 What about .aepx files?</h3>
+                <p>Retro works with standard binary <code>.aep</code> project files and <code>.ffx</code> presets. XML‑based project formats (.aepx) are not needed or supported.</p>
+            </div>
+            <div class="faq-item">
+                <h3>🆘 Can I uninstall it?</h3>
+                <p>Yes! Go to Windows Settings → Apps → Installed Apps → Find "Retro" → Uninstall. Or use the uninstaller from the Start Menu. Everything cleans up completely.</p>
+            </div>
+            <div class="faq-item">
+                <h3>🔒 Is it really free forever?</h3>
+                <p><strong>YES!</strong> Free, open source, no subscriptions, no locked features, no paywalls. The code is on GitHub — verify it yourself!</p>
+            </div>
+        </section>
+
+        <!-- CHANGELOG -->
+        <section>
+            <h2>Version History</h2>
+            <div class="changelog-item live">
+                <h3>✅ v1.1.1 — Latest Release (August 2026)</h3>
+                <ul>
+                    <li>Renamed from Retrograde → Retro — shorter, cleaner, more memorable</li>
+                    <li>FIXED: Critical — .ffx preset conversion now preserves ALL effect data perfectly</li>
+                    <li>Brand new professional Windows installer with uninstall support</li>
+                    <li>Improved binary parsing — reads full file structure for maximum compatibility</li>
+                    <li>Version detection more accurate across ALL AE releases</li>
+                    <li>Refreshed UI — smoother, faster, more consistent</li>
+                </ul>
+            </div>
+            <div class="changelog-item accent">
+                <h3>⚡ v1.1.0 (August 2026)</h3>
+                <ul>
+                    <li>Batch convert — select dozens of files & convert all at once</li>
+                    <li>Custom output folder — save converted files anywhere</li>
+                    <li>Auto‑backup system — safety copies before every conversion</li>
+                    <li>Auto‑updater — check for new versions inside the panel</li>
+                </ul>
+            </div>
+            <div class="changelog-item muted">
+                <h3>🚀 v1.0.0 (August 2026)</h3>
+                <ul>
+                    <li>Initial Release — 🎉</li>
+                    <li>Convert .aep project files between ANY After Effects versions</li>
+                    <li>Convert .ffx animation presets between versions</li>
+                    <li>Clean dark UI — matches After Effects</li>
+                    <li>Smart version detection</li>
+                </ul>
             </div>
         </section>
 
         <!-- LINKS -->
         <section>
-            <h2>Links & Support</h2>
-            <div class="btn-group">
-                <a href="https://discord.gg/FfngNepNG" class="btn btn-discord">💬 Discord Community</a>
-                <a href="https://github.com/zakkxvs/retrograde" class="btn btn-secondary">⭐ GitHub</a>
-                <a href="https://github.com/zakkxvs/retrograde/issues" class="btn btn-secondary">🐛 Report Bug</a>
-                <a href="https://github.com/zakkxvs/retrograde/releases" class="btn btn-secondary">📋 All Releases</a>
+            <h2>Links & Community</h2>
+            <p style="margin-bottom: 20px;">Found a bug? Have an idea? Join the community or open an Issue on GitHub — feedback builds better tools!</p>
+            <div class="links-grid">
+                <a href="https://discord.gg/FfngNepNG" class="link-card">
+                    <div class="icon">💬</div>
+                    <div class="label">Discord</div>
+                    <div class="desc">Join the community</div>
+                </a>
+                <a href="https://github.com/zakkxvs/retrograde" class="link-card">
+                    <div class="icon">⭐</div>
+                    <div class="label">GitHub</div>
+                    <div class="desc">View source code</div>
+                </a>
+                <a href="https://github.com/zakkxvs/retrograde/issues" class="link-card">
+                    <div class="icon">🐛</div>
+                    <div class="label">Report Bug</div>
+                    <div class="desc">Help fix issues</div>
+                </a>
+                <a href="https://github.com/zakkxvs/retrograde/releases" class="link-card">
+                    <div class="icon">📋</div>
+                    <div class="label">Releases</div>
+                    <div class="desc">All downloads</div>
+                </a>
             </div>
         </section>
 
         <!-- FOOTER -->
         <footer>
-            <p><strong>Retro</strong> — After Effects Toolkit</p>
-            <p>Free • Open Source • Built by <a href="https://github.com/zakkxvs">zakkxvs</a></p>
-            <p style="margin-top:6px;">Not affiliated with Adobe Inc.</p>
+            <p><strong>Retro</strong> — The All‑In‑One After Effects Toolkit</p>
+            <p>Free • Open Source • Built with ❤️ by <a href="https://github.com/zakkxvs">zakkxvs</a></p>
+            <p style="margin-top: 12px;">Not affiliated with Adobe Inc. After Effects is a trademark of Adobe Systems Incorporated.</p>
         </footer>
 
     </div>
